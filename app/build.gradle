@@ -1,0 +1,20 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation project(":lib")
+}
+
+def usage = Attribute.of('org.gradle.usage', Usage)
+
+task print {
+    def view = configurations.runtimeClasspath.incoming.artifactView { 
+        attributes { it.attribute(usage, project.objects.named(Usage, Usage.JAVA_RUNTIME_CLASSES)) } 
+    }
+    inputs.files view.files
+    doLast {
+        view.files.each { println "File: ${it.absolutePath}" }
+        view.artifacts.each { println "Artifact: ${it.id.displayName}" }
+    }
+}

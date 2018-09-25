@@ -1,0 +1,9 @@
+plugins {
+    id 'java-library'
+    id 'groovy'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.70'
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+}
